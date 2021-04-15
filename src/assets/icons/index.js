@@ -7,6 +7,7 @@ import ICAdd from './add.svg';
 import ICCheck from './check.svg';
 import ICCheckGreen from './check-green.svg';
 import ICEye from './eye.svg';
+import ICFlag from './flag.svg';
 
 export {
   ICSplash,
@@ -18,4 +19,5 @@ export {
   ICCheck,
   ICCheckGreen,
   ICEye,
+  ICFlag,
 };

@@ -1,12 +1,24 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-const Button = ({onPress, title}) => {
+const Button = ({onPress, title, type, icon, backgroundColor}) => {
+  if (type === 'icon') {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.6}
+        style={styles.container(backgroundColor, type)}>
+        {icon}
+        <Text style={styles.title}>{title}</Text>
+        <Text />
+      </TouchableOpacity>
+    );
+  }
   return (
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={0.6}
-      style={styles.container}>
+      style={styles.container(backgroundColor)}>
       <Text style={styles.title}>{title}</Text>
     </TouchableOpacity>
   );
@@ -15,16 +27,19 @@ const Button = ({onPress, title}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  container: {
+  container: (backgroundColor, type) => ({
     borderRadius: 19,
-    paddingVertical: 24.5,
+    paddingVertical: 21,
     width: 353,
-    justifyContent: 'center',
+    paddingHorizontal: 35,
     alignItems: 'center',
-    backgroundColor: '#53b175',
-  },
+    backgroundColor: backgroundColor,
+    flexDirection: 'row',
+    justifyContent: type === 'icon' ? 'space-between' : 'center',
+  }),
   title: {
     fontSize: 16,
+    textAlign: 'center',
     color: '#FFF9FF',
     fontFamily: 'Poppins-Regular',
   },
