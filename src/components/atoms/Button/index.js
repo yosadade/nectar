@@ -1,7 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 const Button = ({onPress, title, type, icon, backgroundColor}) => {
+  if (type === 'toast') {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.6}
+        style={styles.container(backgroundColor, type)}>
+        {icon}
+        <Text />
+      </TouchableOpacity>
+    );
+  }
   if (type === 'icon') {
     return (
       <TouchableOpacity
@@ -28,14 +39,15 @@ export default Button;
 
 const styles = StyleSheet.create({
   container: (backgroundColor, type) => ({
-    borderRadius: 19,
+    borderRadius: type === 'toast' ? 67 : 19,
     paddingVertical: 21,
-    width: 353,
+    width: type === 'toast' ? 67 : 353,
+    height: type === 'toast' ? 67 : null,
     paddingHorizontal: 35,
     alignItems: 'center',
     backgroundColor: backgroundColor,
     flexDirection: 'row',
-    justifyContent: type === 'icon' ? 'space-between' : 'center',
+    justifyContent: type === 'icon' && 'toast' ? 'space-between' : 'center',
   }),
   title: {
     fontSize: 16,
