@@ -3,10 +3,7 @@ import {StyleSheet, Text, View, StatusBar, ScrollView} from 'react-native';
 import {ICCarrot} from '../../assets';
 import {TextInput, Gap, Link, Button} from '../../components';
 
-const Login = ({navigation}) => {
-  const onSignUp = () => {
-    navigation.navigate('SignUp');
-  };
+const Login = () => {
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -18,19 +15,28 @@ const Login = ({navigation}) => {
         <View style={styles.icon}>
           <ICCarrot />
         </View>
-        <Text style={styles.title}>Loging</Text>
-        <Text style={styles.subTitle}>Enter your email and passwords</Text>
-        <TextInput title="Email" />
+        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.subTitle}>Enter your credential to continue</Text>
+        <TextInput title="Username" />
         <Gap height={40} />
+        <TextInput title="Email" />
+        <Gap height={20} />
         <TextInput title="Password" icon secureTextEntry />
         <Gap height={20} />
-        <Link title="Forgot Password?" color="#181725" textAlign="right" />
+        <View style={styles.wrapperTerms}>
+          <Text style={styles.titleTerms}>By Continue you agree to our </Text>
+          <Link title="Terms of Service" color="#53B175" />
+        </View>
+        <View style={styles.wrapperTerms}>
+          <Text style={styles.titleTerms}>And </Text>
+          <Link title="Privacy Policy" color="#53B175" />
+        </View>
         <Gap height={30} />
-        <Button title="Log In" backgroundColor="#53B175" />
+        <Button title="Sign Up" backgroundColor="#53B175" />
         <Gap height={25} />
         <View style={styles.wrapperLink}>
-          <Text style={styles.link}>Don't have an account ? </Text>
-          <Link title="Sign Up" color="#53B175" onPress={onSignUp} />
+          <Text style={styles.link}>Alredy have an account ? </Text>
+          <Link title="Sign In" color="#53B175" />
         </View>
       </View>
     </ScrollView>
@@ -63,6 +69,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 40,
     fontFamily: 'Poppins-Regular',
+    color: '#7C7C7C',
+  },
+  wrapperTerms: {
+    flexDirection: 'row',
+  },
+  titleTerms: {
+    fontSize: 14,
+    fontFamily: 'Poppins-Light',
     color: '#7C7C7C',
   },
   wrapperLink: {

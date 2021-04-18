@@ -7,6 +7,7 @@ import {
   Number,
   Verification,
   Login,
+  SignUp,
 } from '../pages';
 
 const Stack = createStackNavigator();
@@ -42,6 +43,11 @@ const Router = () => {
       <Stack.Screen
         name="SignIn"
         component={SignIn}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
