@@ -12,9 +12,14 @@ import {
 
 const Stack = createStackNavigator();
 
-const Router = () => {
+const Auth = () => {
   return (
     <Stack.Navigator>
+      <Stack.Screen
+        name="Splash"
+        component={Splash}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Login"
         component={Login}
@@ -23,11 +28,6 @@ const Router = () => {
       <Stack.Screen
         name="Verification"
         component={Verification}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Splash"
-        component={Splash}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -50,6 +50,35 @@ const Router = () => {
         component={SignUp}
         options={{headerShown: false}}
       />
+    </Stack.Navigator>
+  );
+};
+
+// const MainApp = () => {
+//   return (
+//     <Stack.Navigator>
+//       <Stack.Screen
+//         name=""
+//         component={}
+//         options={{headerShown: false}}
+//       />
+//     </Stack.Navigator>
+//   )
+// }
+
+const Router = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Auth"
+        component={Auth}
+        options={{headerShown: false}}
+      />
+      {/* <Stack.Screen
+        name="MainApp"
+        component={MainApp}
+        options={{headerShown: false}}
+      /> */}
     </Stack.Navigator>
   );
 };

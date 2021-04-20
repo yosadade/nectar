@@ -10,6 +10,16 @@ import ICEye from './eye.svg';
 import ICFlag from './flag.svg';
 import ICBack from './back.svg';
 import ICForward from './forward.svg';
+import ICShop from './shop.svg';
+import ICShopActive from './shop-active.svg';
+import ICExplore from './explore.svg';
+import ICExploreActive from './explore-active.svg';
+import ICCart from './cart.svg';
+import ICCartActive from './cart-active.svg';
+import ICFavourite from './favourite.svg';
+import ICFavouriteActive from './favourite-active.svg';
+import ICAccount from './account.svg';
+import ICAccountActive from './account-active.svg';
 
 export {
   ICSplash,
@@ -24,4 +34,14 @@ export {
   ICFlag,
   ICBack,
   ICForward,
+  ICShop,
+  ICShopActive,
+  ICExplore,
+  ICExploreActive,
+  ICFavourite,
+  ICFavouriteActive,
+  ICAccount,
+  ICAccountActive,
+  ICCart,
+  ICCartActive,
 };
