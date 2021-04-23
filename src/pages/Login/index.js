@@ -4,6 +4,9 @@ import {ICCarrot} from '../../assets';
 import {TextInput, Gap, Link, Button} from '../../components';
 
 const Login = ({navigation}) => {
+  const onLogin = () => {
+    navigation.replace('MainApp');
+  };
   const onSignUp = () => {
     navigation.navigate('SignUp');
   };
@@ -26,7 +29,7 @@ const Login = ({navigation}) => {
         <Gap height={20} />
         <Link title="Forgot Password?" color="#181725" textAlign="right" />
         <Gap height={30} />
-        <Button title="Log In" backgroundColor="#53B175" />
+        <Button title="Log In" backgroundColor="#53B175" onPress={onLogin} />
         <Gap height={25} />
         <View style={styles.wrapperLink}>
           <Text style={styles.link}>Don't have an account ? </Text>

@@ -3,7 +3,14 @@ import {StyleSheet, Text, View, StatusBar, ScrollView} from 'react-native';
 import {ICCarrot} from '../../assets';
 import {TextInput, Gap, Link, Button} from '../../components';
 
-const Login = () => {
+const Login = ({navigation}) => {
+  const onSignUp = () => {
+    navigation.replace('SelectLocation');
+  };
+
+  const onSignIn = () => {
+    navigation.navigate('Login');
+  };
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -32,11 +39,11 @@ const Login = () => {
           <Link title="Privacy Policy" color="#53B175" />
         </View>
         <Gap height={30} />
-        <Button title="Sign Up" backgroundColor="#53B175" />
+        <Button title="Sign Up" backgroundColor="#53B175" onPress={onSignUp} />
         <Gap height={25} />
         <View style={styles.wrapperLink}>
           <Text style={styles.link}>Alredy have an account ? </Text>
-          <Link title="Sign In" color="#53B175" />
+          <Link title="Sign In" color="#53B175" onPress={onSignIn} />
         </View>
       </View>
     </ScrollView>

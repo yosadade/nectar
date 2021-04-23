@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
   Splash,
   OnBoarding,
@@ -8,16 +9,29 @@ import {
   Verification,
   Login,
   SignUp,
+  Shop,
+  Explore,
+  Favourite,
+  Cart,
+  Account,
+  SelectLocation,
 } from '../pages';
+import {BottomNavigator} from '../components';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Auth = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen
         name="Splash"
         component={Splash}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OnBoarding"
+        component={OnBoarding}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -36,11 +50,6 @@ const Auth = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="OnBoarding"
-        component={OnBoarding}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="SignIn"
         component={SignIn}
         options={{headerShown: false}}
@@ -50,21 +59,26 @@ const Auth = () => {
         component={SignUp}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name="SelectLocation"
+        component={SelectLocation}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
 
-// const MainApp = () => {
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen
-//         name=""
-//         component={}
-//         options={{headerShown: false}}
-//       />
-//     </Stack.Navigator>
-//   )
-// }
+const MainApp = () => {
+  return (
+    <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
+      <Tab.Screen name="Shop" component={Shop} />
+      <Tab.Screen name="Explore" component={Explore} />
+      <Tab.Screen name="Cart" component={Cart} />
+      <Tab.Screen name="Favourite" component={Favourite} />
+      <Tab.Screen name="Account" component={Account} />
+    </Tab.Navigator>
+  );
+};
 
 const Router = () => {
   return (
@@ -74,11 +88,11 @@ const Router = () => {
         component={Auth}
         options={{headerShown: false}}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="MainApp"
         component={MainApp}
         options={{headerShown: false}}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

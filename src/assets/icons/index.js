@@ -20,6 +20,9 @@ import ICFavourite from './favourite.svg';
 import ICFavouriteActive from './favourite-active.svg';
 import ICAccount from './account.svg';
 import ICAccountActive from './account-active.svg';
+import ICLocation from './location.svg';
+import ICCarrotMini from './carrot-mini.svg';
+import ICSearch from './search.svg';
 
 export {
   ICSplash,
@@ -44,4 +47,7 @@ export {
   ICAccountActive,
   ICCart,
   ICCartActive,
+  ICLocation,
+  ICCarrotMini,
+  ICSearch,
 };

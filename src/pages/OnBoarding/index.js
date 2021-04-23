@@ -22,7 +22,7 @@ const OnBoarding = ({navigation}) => {
             <Button
               title="Get Started"
               backgroundColor="#53b175"
-              onPress={() => navigation.replace('SignIn')}
+              onPress={() => navigation.replace('Login')}
             />
           </View>
         </View>
