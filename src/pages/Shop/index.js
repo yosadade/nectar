@@ -18,6 +18,10 @@ import {
   ILApple,
   ILPaprica,
   ILFuel,
+  ILBeef,
+  ILChicken,
+  ILPulses,
+  ILRice,
 } from '../../assets';
 import {TextInput, Gap, Label, Card} from '../../components';
 
@@ -70,23 +74,38 @@ const Shop = () => {
     },
     {
       id: 3,
-      name: 'Bell Pepper Red',
+      name: 'Beff Bone',
       desc: '1 kg, Priceg',
       price: '$4.99',
-      image: ILPaprica,
+      image: ILBeef,
     },
     {
       id: 4,
-      name: 'Ginger',
-      desc: '250 gr, priceg',
+      name: 'Broiller Chicken',
+      desc: '1kg, priceg',
       price: '$3.99',
-      image: ILFuel,
+      image: ILChicken,
+    },
+  ];
+
+  const groceries = [
+    {
+      id: 1,
+      name: 'Pulses',
+      backgroundColor: '#FEF1E4',
+      image: ILPulses,
+    },
+    {
+      id: 2,
+      name: 'Rice',
+      backgroundColor: '#E5F3EA',
+      image: ILRice,
     },
   ];
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
-        <StatusBar barStyle="dark-content" backgroundColor="transparent" />
+        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
         <View style={styles.icon}>
           <ICCarrotMini />
         </View>
@@ -120,22 +139,44 @@ const Shop = () => {
         <Gap height={20} />
         <SafeAreaView style={{flex: 1}}>
           <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
             data={bestSelling}
             keyExtractor={(item, index) => item + index.toString()}
+            numColumns={2}
             renderItem={item => {
               const {name, desc, price, image} = item.item;
               return (
                 <Card name={name} desc={desc} price={price} image={image} />
               );
             }}
+            contentContainerStyle={{
+              paddingHorizontal: 18,
+              alignItems: 'flex-start',
+            }}
+          />
+        </SafeAreaView>
+        <Gap height={5} />
+        <Label title="Groceries" link="See all" />
+        <Gap height={20} />
+        <SafeAreaView style={{flex: 1}}>
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={groceries}
+            keyExtractor={(item, index) => item + index.toString()}
+            renderItem={item => {
+              const {name, backgroundColor, image} = item.item;
+              return (
+                <Card
+                  type="groceries"
+                  name={name}
+                  backgroundColor={backgroundColor}
+                  image={image}
+                />
+              );
+            }}
             contentContainerStyle={{paddingHorizontal: 18}}
           />
         </SafeAreaView>
-        <Gap height={20} />
-        <Label title="Groceries" link="See all" />
-        <Gap height={20} />
       </View>
     </ScrollView>
   );

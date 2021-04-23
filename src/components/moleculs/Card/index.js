@@ -3,11 +3,32 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Gap, Button} from '../../atoms';
 import {ICAdd} from '../../../assets';
 
-const Card = ({image, name, desc, price, onPress, onAdd}) => {
+const Card = ({
+  image,
+  name,
+  desc,
+  price,
+  onPress,
+  onAdd,
+  type,
+  backgroundColor,
+}) => {
+  if (type === 'groceries') {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.container(type, backgroundColor)}
+        onPress={onPress}>
+        <Image source={image} style={styles.image} />
+        <Gap height={15} />
+        <Text style={styles.name}>{name}</Text>
+      </TouchableOpacity>
+    );
+  }
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      style={styles.container}
+      style={styles.container(type, backgroundColor)}
       onPress={onPress}>
       <Image source={image} style={styles.image} />
       <Gap height={15} />
@@ -30,17 +51,20 @@ const Card = ({image, name, desc, price, onPress, onAdd}) => {
 export default Card;
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 10,
-    paddingVertical: 15,
-    paddingTop: 33,
-    width: 173,
-    // justifyContent: 'space-between',
+  container: (type, backgroundColor) => ({
+    marginBottom: 15,
+    paddingHorizontal: type === 'groceries' ? 0 : 10,
+    paddingVertical: type === 'groceries' ? 17 : 15,
+    paddingTop: type === 'groceries' ? 15 : 33,
+    width: type === 'groceries' ? 237 : 173,
+    alignItems: type === 'groceries' ? 'center' : null,
+    flexDirection: type === 'groceries' ? 'row' : null,
+    backgroundColor: type === 'groceries' ? backgroundColor : '#FFFFFF',
     borderRadius: 18,
     borderWidth: 1,
     borderColor: '#E2E2E2',
     marginRight: 15,
-  },
+  }),
   image: {
     resizeMode: 'contain',
     alignSelf: 'center',
