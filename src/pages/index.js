@@ -11,6 +11,7 @@ import Favourite from './Favourite';
 import Cart from './Cart';
 import Account from './Account';
 import SelectLocation from './SelectLocation';
+import ProductDetail from './ProductDetail';
 
 export {
   Splash,
@@ -26,4 +27,5 @@ export {
   Cart,
   Account,
   SelectLocation,
+  ProductDetail,
 };

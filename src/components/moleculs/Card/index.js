@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: type === 'groceries' ? 'row' : null,
     backgroundColor: type === 'groceries' ? backgroundColor : '#FFFFFF',
     borderRadius: 18,
-    borderWidth: 1,
+    borderWidth: type === 'groceries' ? 0 : 1,
     borderColor: '#E2E2E2',
     marginRight: 15,
   }),

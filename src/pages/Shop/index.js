@@ -25,7 +25,7 @@ import {
 } from '../../assets';
 import {TextInput, Gap, Label, Card} from '../../components';
 
-const Shop = () => {
+const Shop = ({navigation}) => {
   const exclusiveOffer = [
     {
       id: 1,
@@ -102,6 +102,11 @@ const Shop = () => {
       image: ILRice,
     },
   ];
+
+  const onDetail = item => {
+    console.log(item.item);
+    navigation.navigate('ProductDetail', item.item);
+  };
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -125,16 +130,22 @@ const Shop = () => {
             showsHorizontalScrollIndicator={false}
             data={exclusiveOffer}
             keyExtractor={(item, index) => item + index.toString()}
-            renderItem={item => {
-              const {name, desc, price, image} = item.item;
+            renderItem={offer => {
+              const {name, desc, price, image} = offer.item;
               return (
-                <Card name={name} desc={desc} price={price} image={image} />
+                <Card
+                  name={name}
+                  desc={desc}
+                  price={price}
+                  image={image}
+                  onPress={() => onDetail(offer)}
+                />
               );
             }}
             contentContainerStyle={{paddingHorizontal: 18}}
           />
         </SafeAreaView>
-        <Gap height={20} />
+        <Gap height={5} />
         <Label title="Best Selling" link="See all" />
         <Gap height={20} />
         <SafeAreaView style={{flex: 1}}>

@@ -1,15 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {ICBack} from '../../../assets';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {ICBack, ICDownload} from '../../../assets';
 
-const Header = ({onPress}) => {
+const Header = ({
+  onPress,
+  download,
+  onPressDownload,
+  backgroundColor = '#FFFFFF',
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container(backgroundColor)}>
       <TouchableOpacity
         style={styles.back}
         onPress={onPress}
         activeOpacity={0.5}>
         <ICBack />
+      </TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.5} onPress={onPressDownload}>
+        {download && <ICDownload />}
       </TouchableOpacity>
     </View>
   );
@@ -18,5 +26,10 @@ const Header = ({onPress}) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: backgroundColor => ({
+    backgroundColor: backgroundColor,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 25,
+  }),
 });
