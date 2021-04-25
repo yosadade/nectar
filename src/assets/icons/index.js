@@ -25,6 +25,8 @@ import ICCarrotMini from './carrot-mini.svg';
 import ICSearch from './search.svg';
 import ICDownload from './download.svg';
 import ICLove from './love.svg';
+import ICMinus from './minus.svg';
+import ICAddGreen from './add-green.svg';
 
 export {
   ICSplash,
@@ -54,4 +56,6 @@ export {
   ICSearch,
   ICDownload,
   ICLove,
+  ICMinus,
+  ICAddGreen,
 };

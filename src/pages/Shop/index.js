@@ -131,9 +131,10 @@ const Shop = ({navigation}) => {
             data={exclusiveOffer}
             keyExtractor={(item, index) => item + index.toString()}
             renderItem={offer => {
-              const {name, desc, price, image} = offer.item;
+              const {name, desc, price, image, id} = offer.item;
               return (
                 <Card
+                  key={id}
                   name={name}
                   desc={desc}
                   price={price}
@@ -154,9 +155,15 @@ const Shop = ({navigation}) => {
             keyExtractor={(item, index) => item + index.toString()}
             numColumns={2}
             renderItem={item => {
-              const {name, desc, price, image} = item.item;
+              const {name, desc, price, image, id} = item.item;
               return (
-                <Card name={name} desc={desc} price={price} image={image} />
+                <Card
+                  key={id}
+                  name={name}
+                  desc={desc}
+                  price={price}
+                  image={image}
+                />
               );
             }}
             contentContainerStyle={{
@@ -175,9 +182,10 @@ const Shop = ({navigation}) => {
             data={groceries}
             keyExtractor={(item, index) => item + index.toString()}
             renderItem={item => {
-              const {name, backgroundColor, image} = item.item;
+              const {name, backgroundColor, image, id} = item.item;
               return (
                 <Card
+                  key={id}
                   type="groceries"
                   name={name}
                   backgroundColor={backgroundColor}

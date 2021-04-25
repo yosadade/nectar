@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 const Button = ({onPress, title, type, icon, backgroundColor}) => {
-  if (type === 'add') {
+  if (type === 'add' || 'count') {
     return (
       <TouchableOpacity
         onPress={onPress}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,40 +6,60 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
-import {Header} from '../../components';
+import {Header, Counter, Gap, Divider} from '../../components';
 import {ICLove} from '../../assets';
 
 const ProductDetail = ({navigation, route}) => {
+  const [count, setCount] = useState(1);
   const {name, desc, image, price} = route.params;
   const onBack = () => {
     navigation.goBack();
   };
+  const onMin = () => {
+    count <= 1 ? setCount(count === 1) : setCount(count - 1);
+  };
+
+  const onAdd = () => {
+    setCount(count + 1);
+  };
   const onDownload = () => {};
   return (
-    <View style={styles.page}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F2F3F2" />
-      <Header
-        download
-        backgroundColor="#F2F3F2"
-        onPress={onBack}
-        onPressDownload={onDownload}
-      />
-      <View style={styles.wrapperImage}>
-        <Image source={image} style={styles.image} />
-      </View>
-      <View style={styles.detail}>
-        <View style={styles.headerDetail}>
-          <View>
-            <Text style={styles.name}>{name}</Text>
-            <Text style={styles.desc}>{desc}</Text>
+    <ScrollView style={styles.page} showsVerticalScrollIndicator={false}>
+      <View style={styles.page}>
+        <StatusBar barStyle="dark-content" backgroundColor="#F2F3F2" />
+        <Header
+          download
+          backgroundColor="#F2F3F2"
+          onPress={onBack}
+          onPressDownload={onDownload}
+        />
+        <View style={styles.wrapperImage}>
+          <Image source={image} style={styles.image} />
+        </View>
+        <Gap height={20} />
+        <View style={styles.detail}>
+          <View style={styles.headerDetail}>
+            <View>
+              <Text style={styles.name}>{name}</Text>
+              <Text style={styles.desc}>{desc}</Text>
+            </View>
+            <TouchableOpacity>
+              <ICLove />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity>
-            <ICLove />
-          </TouchableOpacity>
+          <Gap height={20} />
+          <View style={styles.wrapperCounter}>
+            <Counter onPressMin={onMin} onPressAdd={onAdd} count={count} />
+            <Text style={styles.name}>{price}</Text>
+          </View>
+          <Gap height={20} />
+          <Divider />
+          <Gap height={20} />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -67,9 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F3F2',
   },
   detail: {
-    flex: 1,
     paddingHorizontal: 25,
-    paddingVertical: 30,
   },
   headerDetail: {
     flexDirection: 'row',
@@ -85,5 +103,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Poppins-light',
     color: '#7C7C7C',
+  },
+  wrapperCounter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
