@@ -27,6 +27,10 @@ import ICDownload from './download.svg';
 import ICLove from './love.svg';
 import ICMinus from './minus.svg';
 import ICAddGreen from './add-green.svg';
+import ICDown from './down.svg';
+import ICNext from './next.svg';
+import ICStar from './star.svg';
+import ICFavouriteRed from './favourite-red.svg';
 
 export {
   ICSplash,
@@ -58,4 +62,8 @@ export {
   ICLove,
   ICMinus,
   ICAddGreen,
+  ICDown,
+  ICNext,
+  ICStar,
+  ICFavouriteRed,
 };

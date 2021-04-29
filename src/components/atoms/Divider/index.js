@@ -10,6 +10,8 @@ export default Divider;
 const styles = StyleSheet.create({
   countainer: {
     borderWidth: 0.5,
+    marginVertical: 15,
+    marginHorizontal: 25,
     borderColor: '#E2E2E2',
   },
 });

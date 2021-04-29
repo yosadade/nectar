@@ -33,6 +33,8 @@ const Shop = ({navigation}) => {
       desc: '7 pcs, Priceg',
       price: '$4.99',
       image: ILBanana,
+      detail:
+        'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
     },
     {
       id: 2,
@@ -40,6 +42,8 @@ const Shop = ({navigation}) => {
       desc: '1 kg, priceg',
       price: '$3.99',
       image: ILApple,
+      detail:
+        'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
     },
     {
       id: 3,
@@ -107,6 +111,12 @@ const Shop = ({navigation}) => {
     console.log(item.item);
     navigation.navigate('ProductDetail', item.item);
   };
+
+  const onBestSelling = item => {
+    console.log(item.item);
+    navigation.navigate('ProductDetail', item.item);
+  };
+
   return (
     <ScrollView style={styles.scrollview} showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -163,6 +173,7 @@ const Shop = ({navigation}) => {
                   desc={desc}
                   price={price}
                   image={image}
+                  onPress={() => onBestSelling(item)}
                 />
               );
             }}

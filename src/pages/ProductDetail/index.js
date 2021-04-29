@@ -8,15 +8,26 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import {Header, Counter, Gap, Divider} from '../../components';
-import {ICLove} from '../../assets';
+import {Header, Counter, Gap, Divider, Label, Button} from '../../components';
+import {ICLove, ICDown, ICNext, ICBack, ICFavouriteRed} from '../../assets';
 
 const ProductDetail = ({navigation, route}) => {
   const [count, setCount] = useState(1);
-  const {name, desc, image, price} = route.params;
+  const [dropDown, setDropDown] = useState(false);
+  const [iconDropDown, setIconDropDown] = useState(<ICNext />);
+  const [favourite, setFavourite] = useState(false);
+  const [iconFavourite, setIconFavourite] = useState(<ICLove />);
+
+  const {name, desc, image, price, detail} = route.params;
   const onBack = () => {
     navigation.goBack();
   };
+
+  const onFavourite = () => {
+    setFavourite(!favourite);
+    setIconFavourite(favourite ? <ICFavouriteRed /> : <ICLove />);
+  };
+
   const onMin = () => {
     count <= 1 ? setCount(count === 1) : setCount(count - 1);
   };
@@ -25,9 +36,16 @@ const ProductDetail = ({navigation, route}) => {
     setCount(count + 1);
   };
   const onDownload = () => {};
+
+  const onDetail = () => {
+    console.log(dropDown);
+    setDropDown(!dropDown);
+    setIconDropDown(dropDown ? <ICNext /> : <ICDown />);
+  };
+
   return (
-    <ScrollView style={styles.page} showsVerticalScrollIndicator={false}>
-      <View style={styles.page}>
+    <View style={styles.page}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <StatusBar barStyle="dark-content" backgroundColor="#F2F3F2" />
         <Header
           download
@@ -40,13 +58,13 @@ const ProductDetail = ({navigation, route}) => {
         </View>
         <Gap height={20} />
         <View style={styles.detail}>
-          <View style={styles.headerDetail}>
-            <View>
+          <View style={styles.header}>
+            <View style={styles.headerDetail}>
               <Text style={styles.name}>{name}</Text>
               <Text style={styles.desc}>{desc}</Text>
             </View>
-            <TouchableOpacity>
-              <ICLove />
+            <TouchableOpacity onPress={onFavourite}>
+              {iconFavourite}
             </TouchableOpacity>
           </View>
           <Gap height={20} />
@@ -54,45 +72,72 @@ const ProductDetail = ({navigation, route}) => {
             <Counter onPressMin={onMin} onPressAdd={onAdd} count={count} />
             <Text style={styles.name}>{price}</Text>
           </View>
-          <Gap height={20} />
           <Divider />
-          <Gap height={20} />
+          <Label
+            type="detail"
+            title="Product Detail"
+            icon={iconDropDown}
+            onPress={onDetail}
+          />
+          {dropDown && <Text style={styles.titleDetail}>{detail}</Text>}
+          <Divider />
+          <Label
+            type="detail"
+            title="Nutritions"
+            nutritions="100gr"
+            icon={iconDropDown}
+          />
+          <Divider />
+          <Label type="detail" title="Review" review icon={iconDropDown} />
+          {/* <Gap height={20} /> */}
         </View>
+      </ScrollView>
+      <View style={styles.wrapperButton}>
+        <Button title="Add To Basket" backgroundColor="#53B175" />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
 export default ProductDetail;
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   page: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    justifyContent: 'space-between',
   },
   wrapperImage: {
     backgroundColor: '#F2F3F2',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 50,
+    paddingVertical: 20,
     paddingHorizontal: 40,
     borderBottomLeftRadius: 25,
     borderBottomRightRadius: 25,
   },
   image: {
-    width: 320,
+    width: 300,
     height: 200,
     alignSelf: 'center',
     resizeMode: 'contain',
     backgroundColor: '#F2F3F2',
   },
   detail: {
-    paddingHorizontal: 25,
+    // paddingHorizontal: 25,
   },
-  headerDetail: {
+  header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingHorizontal: 25,
+  },
+  headerDetail: {
+    justifyContent: 'space-between',
   },
   name: {
     fontSize: 24,
@@ -107,5 +152,18 @@ const styles = StyleSheet.create({
   wrapperCounter: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingHorizontal: 25,
+  },
+  titleDetail: {
+    fontSize: 13,
+    marginTop: 10,
+    paddingHorizontal: 25,
+    fontFamily: 'Poppins-Light',
+    color: '#7C7C7C',
+  },
+  wrapperButton: {
+    paddingHorizontal: 25,
+    paddingVertical: 25,
+    backgroundColor: 'transparent',
   },
 });
