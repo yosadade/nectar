@@ -14,6 +14,8 @@ const TextInput = ({
   secureTextEntry,
   icon,
   onPress,
+  value,
+  onChangeText,
   placeholder,
 }) => {
   const [iconSecureText, setIconSecureText] = useState(false);
@@ -28,6 +30,8 @@ const TextInput = ({
         <TextInputRN
           placeholder={placeholder}
           keyboardType="Numeric"
+          value={value}
+          onChangeText={onChangeText}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             marginTop: -20,
@@ -51,6 +55,8 @@ const TextInput = ({
         <TextInputRN
           secureTextEntry={iconSecureText ? secureTextEntry : null}
           placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             marginTop: -10,
@@ -77,6 +83,8 @@ const TextInput = ({
       <TextInputRN
         secureTextEntry={iconSecureText ? secureTextEntry : null}
         placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
         // eslint-disable-next-line react-native/no-inline-styles
         style={{
           backgroundColor: '#FFFFFF',

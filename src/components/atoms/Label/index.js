@@ -3,7 +3,16 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Link from '../Link';
 import {ICStar} from '../../../assets';
 
-const Label = ({title, link, onPress, type, icon, nutritions, review}) => {
+const Label = ({
+  title,
+  link,
+  onPress,
+  type,
+  icon,
+  nutritions,
+  review,
+  productDetail,
+}) => {
   if (type === 'detail') {
     return (
       <View style={styles.container}>
@@ -27,6 +36,9 @@ const Label = ({title, link, onPress, type, icon, nutritions, review}) => {
             </View>
             <TouchableOpacity onPress={onPress}>{icon}</TouchableOpacity>
           </View>
+        )}
+        {productDetail && (
+          <TouchableOpacity onPress={onPress}>{icon}</TouchableOpacity>
         )}
       </View>
     );

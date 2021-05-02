@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {Header, Counter, Gap, Divider, Label, Button} from '../../components';
-import {ICLove, ICDown, ICNext, ICBack, ICFavouriteRed} from '../../assets';
+import {ICLove, ICDown, ICNext, ICFavouriteRed} from '../../assets';
 
 const ProductDetail = ({navigation, route}) => {
   const [count, setCount] = useState(1);
@@ -22,6 +22,10 @@ const ProductDetail = ({navigation, route}) => {
   const onBack = () => {
     navigation.goBack();
   };
+
+  useEffect(() => {
+    console.log(route);
+  });
 
   const onFavourite = () => {
     setFavourite(!favourite);
@@ -78,6 +82,7 @@ const ProductDetail = ({navigation, route}) => {
             title="Product Detail"
             icon={iconDropDown}
             onPress={onDetail}
+            productDetail
           />
           {dropDown && <Text style={styles.titleDetail}>{detail}</Text>}
           <Divider />

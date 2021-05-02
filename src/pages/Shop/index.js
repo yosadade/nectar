@@ -108,12 +108,10 @@ const Shop = ({navigation}) => {
   ];
 
   const onDetail = item => {
-    console.log(item.item);
     navigation.navigate('ProductDetail', item.item);
   };
 
   const onBestSelling = item => {
-    console.log(item.item);
     navigation.navigate('ProductDetail', item.item);
   };
 
@@ -126,7 +124,7 @@ const Shop = ({navigation}) => {
         </View>
         <View style={styles.location}>
           <ICLocation />
-          <Text style={styles.titleLocation}>Dhaka, Banassre</Text>
+          <Text style={styles.titleLocation}>Mangunan, Yogyakarta</Text>
         </View>
         <TextInput type="search" placeholder="Search Store" />
         <Gap height={10} />

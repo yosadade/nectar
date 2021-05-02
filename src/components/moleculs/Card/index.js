@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Gap, Button} from '../../atoms';
@@ -13,6 +14,19 @@ const Card = ({
   type,
   backgroundColor,
 }) => {
+  if (type === 'explore') {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.container(type, backgroundColor)}
+        onPress={onPress}>
+        <Image source={image} style={styles.image} />
+        <Gap height={15} />
+        <Text style={[styles.name, {textAlign: 'center'}]}>{name}</Text>
+        <Gap height={25} />
+      </TouchableOpacity>
+    );
+  }
   if (type === 'groceries') {
     return (
       <TouchableOpacity
@@ -59,7 +73,8 @@ const styles = StyleSheet.create({
     width: type === 'groceries' ? 237 : 173,
     alignItems: type === 'groceries' ? 'center' : null,
     flexDirection: type === 'groceries' ? 'row' : null,
-    backgroundColor: type === 'groceries' ? backgroundColor : '#FFFFFF',
+    backgroundColor:
+      type === 'groceries' || 'explore' ? backgroundColor : '#FFFFFF',
     borderRadius: 18,
     borderWidth: type === 'groceries' ? 0 : 1,
     borderColor: '#E2E2E2',

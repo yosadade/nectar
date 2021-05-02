@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,9 +7,8 @@ import {
   StatusBar,
   FlatList,
   SafeAreaView,
-  ScrollView,
 } from 'react-native';
-import {TextInput, Gap, Card} from '../../components';
+import {TextInput, Card} from '../../components';
 import {
   ILFreshFruits,
   ILBanana,
@@ -25,14 +24,15 @@ import {
   ILBaverage,
 } from '../../assets';
 
-const Explore = () => {
+const Explore = ({navigation}) => {
+  const [search, setSearch] = useState('');
   const products = [
     {
       id: 1,
       name: 'Frash Fruits & Vegetable',
       image: ILFreshFruits,
-      backgroundColor: '#53B175',
-      Product: [
+      backgroundColor: '#EEF7F1',
+      product: [
         {
           id: 1,
           name: 'Organic Bananas',
@@ -57,8 +57,8 @@ const Explore = () => {
       id: 2,
       name: 'Cooking Oil & Ghee',
       image: ILCookingOil,
-      backgroundColor: '#F8A44C',
-      Product: [
+      backgroundColor: '#FFF6ED',
+      product: [
         {
           id: 1,
           name: 'Cooking Oil',
@@ -83,8 +83,8 @@ const Explore = () => {
       id: 3,
       name: 'Meat & Fish',
       image: ILMeatFish,
-      backgroundColor: '#F7A593',
-      Product: [
+      backgroundColor: '#FDE8E4',
+      product: [
         {
           id: 1,
           name: 'Meal & Fish',
@@ -109,8 +109,8 @@ const Explore = () => {
       id: 4,
       name: 'Bakery & Snacks',
       image: ILBakerySnack,
-      backgroundColor: '#D3B0E0',
-      Product: [
+      backgroundColor: '#F4EBF7',
+      product: [
         {
           id: 1,
           name: 'Meal & Fish',
@@ -135,8 +135,8 @@ const Explore = () => {
       id: 5,
       name: 'Dairy & Eggs',
       image: ILBakerySnack,
-      backgroundColor: '#FDE598',
-      Product: [
+      backgroundColor: '#FEF8E5',
+      product: [
         {
           id: 1,
           name: 'Egg Chicken Red',
@@ -197,8 +197,8 @@ const Explore = () => {
       id: 6,
       name: 'Baverages',
       image: ILBaverage,
-      backgroundColor: '#B7DFF5',
-      Product: [
+      backgroundColor: '#EDF7FC',
+      product: [
         {
           id: 1,
           name: 'Meal & Fish',
@@ -219,39 +219,99 @@ const Explore = () => {
         },
       ],
     },
+    {
+      id: 7,
+      name: 'Frash Fruits & Vegetable',
+      image: ILFreshFruits,
+      backgroundColor: '#e8e6fa',
+      product: [
+        {
+          id: 1,
+          name: 'Organic Bananas',
+          desc: '7 pcs, Priceg',
+          price: '$4.99',
+          image: ILBanana,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 2,
+          name: 'Red Apple',
+          desc: '1 kg, priceg',
+          price: '$3.99',
+          image: ILApple,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+      ],
+    },
+    {
+      id: 8,
+      name: 'Cooking Oil & Ghee',
+      image: ILCookingOil,
+      backgroundColor: '#F4EBF7',
+      product: [
+        {
+          id: 1,
+          name: 'Cooking Oil',
+          desc: '1 liter, Price',
+          price: '$1.99',
+          image: ILCookingOil,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 8,
+          name: 'Cooking Oil',
+          desc: '1 liter, price',
+          price: '$1.99',
+          image: ILCookingOil,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+      ],
+    },
   ];
+  const filterData = products.filter(item => {
+    return item.name.indexOf(search) >= 0;
+  });
+
   return (
-    <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-      <View style={styles.page}>
-        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-        <Text style={styles.title}>Find Product</Text>
-        <TextInput type="search" placeholder="Search Store" />
-        <Gap height={20} />
-        <SafeAreaView style={{flex: 1}}>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={products}
-            keyExtractor={(item, index) => item + index.toString()}
-            numColumns={2}
-            renderItem={item => {
-              const {name, image, id} = item.item;
-              return (
-                <Card
-                  key={id}
-                  name={name}
-                  image={image}
-                  // onPress={() => onBestSelling(item)}
-                />
-              );
-            }}
-            contentContainerStyle={{
-              paddingHorizontal: 18,
-              alignItems: 'flex-start',
-            }}
-          />
-        </SafeAreaView>
-      </View>
-    </ScrollView>
+    <View style={styles.page}>
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+      <Text style={styles.title}>Find product</Text>
+      <TextInput
+        type="search"
+        placeholder="Search Store"
+        onChangeText={value => setSearch(value)}
+      />
+      <SafeAreaView style={{flex: 1}}>
+        <FlatList
+          scrollEnabled
+          showsVerticalScrollIndicator={false}
+          data={filterData}
+          keyExtractor={(item, index) => item + index.toString()}
+          numColumns={2}
+          renderItem={item => {
+            const {name, image, id, backgroundColor} = item.item;
+            return (
+              <Card
+                key={id}
+                type="explore"
+                name={name}
+                image={image}
+                backgroundColor={backgroundColor}
+                onPress={() => navigation.navigate('Product', item)}
+              />
+            );
+          }}
+          contentContainerStyle={{
+            paddingHorizontal: 18,
+            alignItems: 'flex-start',
+          }}
+        />
+      </SafeAreaView>
+    </View>
   );
 };
 
