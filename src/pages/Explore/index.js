@@ -22,6 +22,12 @@ import {
   ILEggNoodles2,
   ILMayonnaiseEggless,
   ILBaverage,
+  ILDietCoke,
+  ILSpriteCan,
+  ILAppleJuice,
+  ILOrangeJuice,
+  ILCocaColaCan,
+  ILPepsiCan,
 } from '../../assets';
 
 const Explore = ({navigation}) => {
@@ -201,19 +207,55 @@ const Explore = ({navigation}) => {
       product: [
         {
           id: 1,
-          name: 'Meal & Fish',
-          desc: '1 kg, Price',
+          name: 'Diet Coke',
+          desc: '355 ml, Price',
           price: '$1.99',
-          image: ILBakerySnack,
+          image: ILDietCoke,
           detail:
             'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
         },
         {
           id: 2,
-          name: 'Meal & Fish',
-          desc: '1 kg, price',
-          price: '$1.99',
-          image: ILBakerySnack,
+          name: 'Sprite Can',
+          desc: '325 ml, price',
+          price: '$1.50',
+          image: ILSpriteCan,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 3,
+          name: 'Apple & Grape Juice',
+          desc: '2 L, Price',
+          price: '$15.99',
+          image: ILAppleJuice,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 4,
+          name: 'Orange Juice',
+          desc: '2 L, price',
+          price: '$15.99',
+          image: ILOrangeJuice,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 5,
+          name: 'Coca Cola Can',
+          desc: '325 ml, Price',
+          price: '$4.99',
+          image: ILCocaColaCan,
+          detail:
+            'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
+        },
+        {
+          id: 6,
+          name: 'Pepsi Can',
+          desc: '330 ml, price',
+          price: '$4.99',
+          image: ILPepsiCan,
           detail:
             'Apple Are Nutritous. Apples May Be Good for weight loss. Apple may be good for your hearth as part of a healtful and varied diet.',
         },

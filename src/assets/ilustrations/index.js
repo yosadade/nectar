@@ -22,6 +22,12 @@ import ILEggPasta from './egg-pasta.png';
 import ILEggNoodles from './egg-noodles.png';
 import ILMayonnaiseEggless from './mayonnaise-eggless.png';
 import ILEggNoodles2 from './egg-noodles2.png';
+import ILDietCoke from './diet-coke.png';
+import ILSpriteCan from './sprite-can.png';
+import ILAppleJuice from './apple-juice.png';
+import ILOrangeJuice from './orange-juice.png';
+import ILCocaColaCan from './cocacola-can.png';
+import ILPepsiCan from './pepsi-can.png';
 
 export {
   ILOnBoarding,
@@ -48,4 +54,10 @@ export {
   ILEggNoodles,
   ILMayonnaiseEggless,
   ILEggNoodles2,
+  ILDietCoke,
+  ILSpriteCan,
+  ILAppleJuice,
+  ILOrangeJuice,
+  ILCocaColaCan,
+  ILPepsiCan,
 };

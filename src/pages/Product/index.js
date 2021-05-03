@@ -1,5 +1,6 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,15 +11,18 @@ import {
 import {Header, Card} from '../../components';
 
 const Product = ({navigation, route}) => {
-  const {product} = route.params.item;
+  const {product, name} = route.params.item;
 
+  useEffect(() => {
+    console.log(name, 'product');
+  });
   return (
     <View style={styles.page}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       <Header
         setting
         backgroundColor="#FFFFFF"
-        title="Find Product"
+        title={name}
         onPress={() => navigation.goBack()}
       />
       <SafeAreaView style={{flex: 1}}>

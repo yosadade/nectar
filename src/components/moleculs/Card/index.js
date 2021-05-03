@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     height: 62,
   },
   name: {
-    fontSize: 16,
+    fontSize: 14.5,
     fontFamily: 'Poppins-SemiBold',
     color: '#181725',
   },
