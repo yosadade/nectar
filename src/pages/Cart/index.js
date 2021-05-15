@@ -4,21 +4,19 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   StatusBar,
   FlatList,
   SafeAreaView,
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Divider, Card, Counter, Button} from '../../components';
+import {Divider, Counter, Button, CustomModal} from '../../components';
 import {
   ILPaprica,
   ICCancel,
   ILBanana,
   ILEggChickenRed,
   ILFuel,
-  ILChicken,
   ILDietCoke,
 } from '../../assets';
 
@@ -72,6 +70,7 @@ const data = [
 
 const Cart = () => {
   const [count, setCount] = useState(1);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const onMin = () => {
     count <= 1 ? setCount(count === 1) : setCount(count - 1);
@@ -80,52 +79,70 @@ const Cart = () => {
   const onAdd = () => {
     setCount(count + 1);
   };
+
+  const onCheckout = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
-    <View style={styles.page}>
-      <View>
-        <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
-        <Text style={styles.title}>My Cart</Text>
-        <Divider marginHorizontal={0} />
-        <SafeAreaView>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            vertical
-            data={data}
-            keyExtractor={(item, index) => item + index.toString()}
-            renderItem={item => {
-              const {name, image, id, desc, price} = item.item;
-              return (
-                <View style={styles.container} key={id}>
-                  <Image source={image} style={styles.image} />
-                  <View style={styles.wrapperCounter}>
-                    <Text style={styles.name}>{name}</Text>
-                    <Text style={styles.desc}>{desc}</Text>
-                    <Counter
-                      onPressMin={onMin}
-                      onPressAdd={onAdd}
-                      count={count}
-                    />
+    <>
+      <View style={styles.page}>
+        <View>
+          <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+          <Text style={styles.title}>My Cart</Text>
+          <Divider marginHorizontal={0} />
+          <SafeAreaView>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              vertical
+              data={data}
+              keyExtractor={(item, index) => item + index.toString()}
+              renderItem={item => {
+                const {name, image, id, desc, price} = item.item;
+                return (
+                  <View style={styles.container} key={id}>
+                    <Image source={image} style={styles.image} />
+                    <View style={styles.wrapperCounter}>
+                      <Text style={styles.name}>{name}</Text>
+                      <Text style={styles.desc}>{desc}</Text>
+                      <Counter
+                        onPressMin={onMin}
+                        onPressAdd={onAdd}
+                        count={count}
+                      />
+                    </View>
+                    <View style={styles.wrapperPrice}>
+                      <TouchableOpacity style={styles.icon}>
+                        <ICCancel />
+                      </TouchableOpacity>
+                      <Text style={styles.price}>${price}</Text>
+                    </View>
                   </View>
-                  <View style={styles.wrapperPrice}>
-                    <TouchableOpacity style={styles.icon}>
-                      <ICCancel />
-                    </TouchableOpacity>
-                    <Text style={styles.price}>${price}</Text>
-                  </View>
-                </View>
-              );
-            }}
-            contentContainerStyle={{
-              paddingHorizontal: 18,
-              paddingBottom: 200,
-            }}
+                );
+              }}
+              contentContainerStyle={{
+                paddingHorizontal: 18,
+                paddingBottom: 200,
+              }}
+            />
+          </SafeAreaView>
+        </View>
+        <View style={styles.wrapperButton}>
+          <Button
+            type="cart"
+            title="Go To Checkout"
+            total={12.22}
+            backgroundColor="#53B175"
+            onPress={onCheckout}
           />
-        </SafeAreaView>
+        </View>
       </View>
-      <View style={styles.wrapperButton}>
-        <Button type="cart" title="Go To Checkout" backgroundColor="#53B175" />
-      </View>
-    </View>
+      {isModalVisible && (
+        <CustomModal
+          isVisible={isModalVisible}
+          onBackdropPress={() => setModalVisible(false)}
+        />
+      )}
+    </>
   );
 };
 

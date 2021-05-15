@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Link from '../Link';
@@ -12,11 +13,20 @@ const Label = ({
   nutritions,
   review,
   productDetail,
+  checkout,
 }) => {
   if (type === 'detail') {
     return (
       <View style={styles.container}>
-        <Text style={styles.title(type)}>{title}</Text>
+        <Text style={[styles.title(type), {color: '#7C7C7C'}]}>{title}</Text>
+        {checkout && (
+          <View style={styles.wrapperRight}>
+            <Text style={styles.title(type)}>{checkout}</Text>
+            <TouchableOpacity onPress={onPress} style={{marginLeft: 20}}>
+              {icon}
+            </TouchableOpacity>
+          </View>
+        )}
         {nutritions && (
           <View style={styles.wrapperRight}>
             <View style={styles.nutritions}>

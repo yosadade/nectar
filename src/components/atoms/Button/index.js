@@ -1,18 +1,21 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const Button = ({onPress, title, type, icon, backgroundColor}) => {
+const Button = ({onPress, title, type, icon, backgroundColor, total}) => {
   if (type === 'cart') {
     return (
       <TouchableOpacity
         onPress={onPress}
         activeOpacity={0.6}
-        style={styles.container(backgroundColor, type)}>
-        <Text style={styles.title} />
+        style={styles.wrapperCart(backgroundColor, total)}>
+        {total && <Text style={{color: 'transparent'}}>test</Text>}
         <Text style={styles.title}>{title}</Text>
-        <View style={styles.wrapperPrice}>
-          <Text style={styles.price}>$12.96</Text>
-        </View>
+        {total && (
+          <View style={styles.wrapperPrice}>
+            <Text style={styles.price}>${total}</Text>
+          </View>
+        )}
       </TouchableOpacity>
     );
   }
@@ -80,13 +83,25 @@ const styles = StyleSheet.create({
     color: '#FFF9FF',
     fontFamily: 'Poppins-Regular',
   },
+  wrapperCart: (backgroundColor, total) => ({
+    borderRadius: 19,
+    paddingVertical: 21,
+    width: 353,
+    height: null,
+    paddingHorizontal: 35,
+    backgroundColor: backgroundColor,
+    flexDirection: 'row',
+    justifyContent: total ? 'space-between' : 'center',
+    alignItems: 'center',
+  }),
   wrapperPrice: {
     backgroundColor: '#489E67',
-    alignItems: 'center',
-    marginLeft: 50,
+    borderRadius: 5,
+    marginLeft: 20,
+    padding: 0.5,
   },
   price: {
-    fontSize: 8,
+    fontSize: 9,
     paddingHorizontal: 5,
     paddingVertical: 2,
     borderRadius: 4,
