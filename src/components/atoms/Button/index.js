@@ -1,7 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const Button = ({onPress, title, type, icon, backgroundColor}) => {
+  if (type === 'cart') {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        activeOpacity={0.6}
+        style={styles.container(backgroundColor, type)}>
+        <Text style={styles.title} />
+        <Text style={styles.title}>{title}</Text>
+        <View style={styles.wrapperPrice}>
+          <Text style={styles.price}>$12.96</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
   if (type === 'add') {
     return (
       <TouchableOpacity
@@ -57,10 +71,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: backgroundColor,
     flexDirection: 'row',
-    justifyContent: type === 'icon' && 'toast' ? 'space-between' : 'center',
+    justifyContent:
+      type === 'icon' && 'toast' && 'cart' ? 'space-between' : 'center',
   }),
   title: {
     fontSize: 16,
+    textAlign: 'center',
+    color: '#FFF9FF',
+    fontFamily: 'Poppins-Regular',
+  },
+  wrapperPrice: {
+    backgroundColor: '#489E67',
+    alignItems: 'center',
+    marginLeft: 50,
+  },
+  price: {
+    fontSize: 8,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 4,
     textAlign: 'center',
     color: '#FFF9FF',
     fontFamily: 'Poppins-Regular',

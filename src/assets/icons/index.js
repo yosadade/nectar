@@ -32,6 +32,7 @@ import ICNext from './next.svg';
 import ICStar from './star.svg';
 import ICFavouriteRed from './favourite-red.svg';
 import ICSetting from './setting.svg';
+import ICCancel from './cancel.svg';
 
 export {
   ICSplash,
@@ -68,4 +69,5 @@ export {
   ICStar,
   ICFavouriteRed,
   ICSetting,
+  ICCancel,
 };

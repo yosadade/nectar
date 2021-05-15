@@ -1,17 +1,17 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-const Divider = () => {
-  return <View style={styles.countainer} />;
+const Divider = ({marginHorizontal = 25}) => {
+  return <View style={styles.countainer(marginHorizontal)} />;
 };
 
 export default Divider;
 
 const styles = StyleSheet.create({
-  countainer: {
+  countainer: marginHorizontal => ({
     borderWidth: 0.5,
     marginVertical: 15,
-    marginHorizontal: 25,
+    marginHorizontal: marginHorizontal,
     borderColor: '#E2E2E2',
-  },
+  }),
 });
