@@ -13,6 +13,7 @@ import Account from './Account';
 import SelectLocation from './SelectLocation';
 import ProductDetail from './ProductDetail';
 import Product from './Product';
+import OrderAccepted from './OrderAccepted';
 
 export {
   Splash,
@@ -30,4 +31,5 @@ export {
   SelectLocation,
   ProductDetail,
   Product,
+  OrderAccepted,
 };

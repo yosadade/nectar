@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import Modal from 'react-native-modal';
-import {ICCancel, ICDown, ICNext} from '../../../assets';
+import {ICCancel, ICNext} from '../../../assets';
 import {Label, Divider, Link, Button} from '../../atoms';
 
-const CustomModal = ({isVisible, onBackdropPress}) => {
+const CustomModal = ({isVisible, onBackdropPress, onBack, onPress}) => {
   return (
     <Modal
       style={styles.container}
@@ -18,7 +18,7 @@ const CustomModal = ({isVisible, onBackdropPress}) => {
       <View style={styles.modal}>
         <View style={styles.header}>
           <Text style={styles.title}>Checkout</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onBack}>
             <ICCancel />
           </TouchableOpacity>
         </View>
@@ -62,7 +62,7 @@ const CustomModal = ({isVisible, onBackdropPress}) => {
           <Button
             title="Place Order"
             backgroundColor="#53b175"
-            //   onPress={() => navigation.replace('Login')}
+            onPress={onPress}
           />
         </View>
       </View>

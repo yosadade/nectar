@@ -14,6 +14,18 @@ const Card = ({
   type,
   backgroundColor,
 }) => {
+  if (type === 'favourite') {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.container(type, backgroundColor)}
+        onPress={onPress}>
+        <Image source={image} style={styles.image} />
+        <Gap height={15} />
+        <Text style={styles.name}>{name}</Text>
+      </TouchableOpacity>
+    );
+  }
   if (type === 'Cart') {
     return (
       <TouchableOpacity

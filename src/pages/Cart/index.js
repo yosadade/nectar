@@ -68,10 +68,9 @@ const data = [
   },
 ];
 
-const Cart = () => {
+const Cart = ({navigation}) => {
   const [count, setCount] = useState(1);
   const [isModalVisible, setModalVisible] = useState(false);
-
   const onMin = () => {
     count <= 1 ? setCount(count === 1) : setCount(count - 1);
   };
@@ -87,7 +86,10 @@ const Cart = () => {
     <>
       <View style={styles.page}>
         <View>
-          <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+          <StatusBar
+            barStyle={isModalVisible ? 'light-content' : 'dark-content'}
+            backgroundColor={isModalVisible ? '#222222' : '#FFFFFF'}
+          />
           <Text style={styles.title}>My Cart</Text>
           <Divider marginHorizontal={0} />
           <SafeAreaView>
@@ -100,15 +102,17 @@ const Cart = () => {
                 const {name, image, id, desc, price} = item.item;
                 return (
                   <View style={styles.container} key={id}>
-                    <Image source={image} style={styles.image} />
-                    <View style={styles.wrapperCounter}>
-                      <Text style={styles.name}>{name}</Text>
-                      <Text style={styles.desc}>{desc}</Text>
-                      <Counter
-                        onPressMin={onMin}
-                        onPressAdd={onAdd}
-                        count={count}
-                      />
+                    <View style={styles.wrapperImage}>
+                      <Image source={image} style={styles.image} />
+                      <View style={styles.wrapperCounter}>
+                        <Text style={styles.name}>{name}</Text>
+                        <Text style={styles.desc}>{desc}</Text>
+                        <Counter
+                          onPressMin={onMin}
+                          onPressAdd={onAdd}
+                          count={count}
+                        />
+                      </View>
                     </View>
                     <View style={styles.wrapperPrice}>
                       <TouchableOpacity style={styles.icon}>
@@ -140,6 +144,8 @@ const Cart = () => {
         <CustomModal
           isVisible={isModalVisible}
           onBackdropPress={() => setModalVisible(false)}
+          onBack={() => setModalVisible(false)}
+          onPress={() => navigation.replace('OrderAccepted')}
         />
       )}
     </>
@@ -170,13 +176,18 @@ const styles = StyleSheet.create({
     paddingVertical: 25,
     borderColor: '#E2E2E2',
   },
+  wrapperImage: {
+    flexDirection: 'row',
+  },
   image: {
     width: 70,
     height: 65,
     resizeMode: 'contain',
     alignSelf: 'center',
   },
-  wrapperCounter: {},
+  wrapperCounter: {
+    marginLeft: 32,
+  },
   name: {
     fontSize: 16,
     fontFamily: 'Poppins-SemiBold',

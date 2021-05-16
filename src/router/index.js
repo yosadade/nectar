@@ -17,6 +17,7 @@ import {
   SelectLocation,
   ProductDetail,
   Product,
+  OrderAccepted,
 } from '../pages';
 import {BottomNavigator} from '../components';
 
@@ -103,6 +104,11 @@ const Router = () => {
       <Stack.Screen
         name="Product"
         component={Product}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderAccepted"
+        component={OrderAccepted}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

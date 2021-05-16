@@ -28,6 +28,7 @@ import ILAppleJuice from './apple-juice.png';
 import ILOrangeJuice from './orange-juice.png';
 import ILCocaColaCan from './cocacola-can.png';
 import ILPepsiCan from './pepsi-can.png';
+import ILOrderAccepted from './order-accepted.png';
 
 export {
   ILOnBoarding,
@@ -60,4 +61,5 @@ export {
   ILOrangeJuice,
   ILCocaColaCan,
   ILPepsiCan,
+  ILOrderAccepted,
 };
